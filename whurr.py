@@ -245,8 +245,8 @@ __name__=="__main__"
 # Please, please, please move this code out! 
 ################################################################
 ec2_as_resource = call_boto_resource()
-dummy_obj = call_me_one_nn(ec2_as_resource, 'shell.sh', 'ash-key-insight', None, None, 1, 1)
-dummy_obj = call_my_new_instances(ec2_as_resource,'shell.sh', 'ash-key-insight', None, None, 1, 5)
+dummy_obj = call_me_one_nn(ec2_as_resource, 'shell.sh', 'amazon-key-name', None, None, 1, 1)
+dummy_obj = call_my_new_instances(ec2_as_resource,'shell.sh', 'amazon-key-name', None, None, 1, 5)
 
 ################################################################
 # Give enough time for the Instance to create data and all the 
@@ -255,17 +255,17 @@ dummy_obj = call_my_new_instances(ec2_as_resource,'shell.sh', 'ash-key-insight',
 # slight delay.
 ################################################################
 
-#while(True):
-#	n = 120
-#	if os.path.isfile('logistic.txt'):
-#		n=600
-#		dummy_obj = call_my_new_instances(ec2_as_resource,'shell.sh', 'ash-key-insight', None, None, 1, 1 )
-#		instance_obj_list = list(ec2_as_resource.instances.filter(Filters=[{'Name':'tag-value','Values':[create_my_tag('instance')]}]))
-#		live_instance_object_list = filter(lambda iol: iol.state['Code'] != 48 and iol.private_ip_address != '10.0.48.5', instance_obj_list)
-#		picked_random_instance = random.choice(live_instance_object_list)
-#		terminal_status = picked_random_instance.terminate()
-#		picked_random_instance.wait_until_terminated()
-#	time.sleep(n)
+while(True):
+	n = 120
+	if os.path.isfile('logistic.txt'):
+		n=600
+		dummy_obj = call_my_new_instances(ec2_as_resource,'shell.sh', 'amazon-key-name', None, None, 1, 1 )
+		instance_obj_list = list(ec2_as_resource.instances.filter(Filters=[{'Name':'tag-value','Values':[create_my_tag('instance')]}]))
+		live_instance_object_list = filter(lambda iol: iol.state['Code'] != 48 and iol.private_ip_address != '10.0.48.5', instance_obj_list)
+		picked_random_instance = random.choice(live_instance_object_list)
+		terminal_status = picked_random_instance.terminate()
+		picked_random_instance.wait_until_terminated()
+	time.sleep(n)
 		
 ##time.sleep(3600)
 #time.sleep(160)
@@ -278,5 +278,5 @@ dummy_obj = call_my_new_instances(ec2_as_resource,'shell.sh', 'ash-key-insight',
 #	picked_random_instance = random.choice(live_instance_object_list)
 #	terminal_status = picked_random_instance.terminate()
 #	picked_random_instance.wait_until_terminated()
-##	dummy_obj = call_my_new_instances(ec2_as_resource, None, 'ash-key-insight', None, None, 1, 1)
+##	dummy_obj = call_my_new_instances(ec2_as_resource, None, 'amazon-key-name', None, None, 1, 1)
 
