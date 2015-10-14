@@ -255,10 +255,17 @@ dummy_obj = call_my_new_instances(ec2_as_resource,'shell.sh', 'amazon-key-name',
 # slight delay.
 ################################################################
 
+################################################################
+# Set rand_flag to 1 if you want random timing in your
+# experiment. If not leave it at zero
+################################################################
+rand_flag = 0
+
 while(True):
 	n = 120
 	if os.path.isfile('logistic.txt'):
-		n=600
+		if rand_flag == 1:
+			n = random.choice(range(200,1200,25))
 		dummy_obj = call_my_new_instances(ec2_as_resource,'shell.sh', 'amazon-key-name', None, None, 1, 1 )
 		instance_obj_list = list(ec2_as_resource.instances.filter(Filters=[{'Name':'tag-value','Values':[create_my_tag('instance')]}]))
 		live_instance_object_list = filter(lambda iol: iol.state['Code'] != 48 and iol.private_ip_address != '10.0.48.5', instance_obj_list)
